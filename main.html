@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="Sidenav.css" media="screen" />
+    </head>
+    <body>
+        <div class="sidenav">
+            <a href="#" id="Home" onclick="SetVar(this.id)">Home</a>
+            <a href="#" id="Gnd" onclick="SetVar(this.id)">GND</a>
+            <a href="#" id="Sid" onclick="SetVar(this.id)">SID</a>
+            <a href="#" id="Star" onclick="SetVar(this.id)">STAR</a>
+            <a href="#" id="Iac" onclick="SetVar(this.id)">IAC</a>
+            <div class="dropdown">
+                <button id="AptBtn" class="dropbtn">APT: </button>
+                <div class="dropdown-content">
+                <a href="#" id="EDDB" onclick="SetVar(this.id)">EDDB</a>
+                <a href="#" id="EDDF" onclick="SetVar(this.id)">EDDF</a>
+                <a href="#" id="EDDH" onclick="SetVar(this.id)">EDDH</a>
+                <a href="#" id="EDDL" onclick="SetVar(this.id)">EDDL</a>
+                <a href="#" id="EDDM" onclick="SetVar(this.id)">EDDM</a>
+                <a href="#" id="EDDS" onclick="SetVar(this.id)">EDDS</a>
+
+                </div>
+              </div>
+        </div>
+        <div class="main">
+            <h1 id="heading">Home</h1>
+            <p id="debug">Debug</p>
+            <a href="#" class="ContentBtn" id="ContentBtn0" target="_blank">ContentBtn0</a>
+            <a href="#" class="ContentBtn" id="ContentBtn1" target="_blank">ContentBtn1</a>
+            <a href="#" class="ContentBtn" id="ContentBtn2" target="_blank">ContentBtn2</a>
+            <a href="#" class="ContentBtn" id="ContentBtn3" target="_blank">ContentBtn3</a>
+            <a href="#" class="ContentBtn" id="ContentBtn4" target="_blank">ContentBtn4</a>
+            <a href="#" class="ContentBtn" id="ContentBtn5" target="_blank">ContentBtn5</a>
+            <a href="#" class="ContentBtn" id="ContentBtn6" target="_blank">ContentBtn6</a>
+            <a href="#" class="ContentBtn" id="ContentBtn7" target="_blank">ContentBtn7</a>
+            <a href="#" class="ContentBtn" id="ContentBtn8" target="_blank">ContentBtn8</a>
+            <a href="#" class="ContentBtn" id="ContentBtn9" target="_blank">ContentBtn9</a>
+            <a href="#" class="ContentBtn" id="ContentBtn10" target="_blank">ContentBtn10</a>
+            <a href="#" class="ContentBtn" id="ContentBtn11" target="_blank">ContentBtn11</a>
+            <a href="#" class="ContentBtn" id="ContentBtn12" target="_blank">ContentBtn12</a>
+            <a href="#" class="ContentBtn" id="ContentBtn13" target="_blank">ContentBtn13</a>
+            <a href="#" class="ContentBtn" id="ContentBtn14" target="_blank">ContentBtn14</a>
+        </div>
+
+   <script>
+       var ButtonNumber;
+       var StorageBetween;
+
+       var ButtonNumber = 11;
+       var Counter = 0;
+
+       var AptVar;
+       var MenuVar = "Home";
+
+       var Name = "Name";
+       var Link = "Link";
+
+       var EDDxGndName = [""];
+       var EDDxGndLink = [""];
+       var EDDxSidName = [""];
+       var EDDxSidLink = [""];
+       var EDDxStarName = [""];
+       var EDDxStarLink = [""];
+       var EDDxIacName = [""];
+       var EDDxIacLink = [""];
+
+       var EDDBGndName = ["Ground", "Apron"];
+       var EDDBGndLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=3E0290E0846AF46137C31B987C488E56&title=AD%202%20EDDB%202-9", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=7E6567C349D0ACCA4FCDB9F18598C4C1&title=AD%202%20EDDB%202-7"]; 
+       var EDDBSidName = ["Rwy 07L", "Rwy 07L West Side", "Rwy 07R", "Rwy 07R West Side", "Rwy 25L", "Rwy 25L West Side", "Rwy 25R", "Rwy 25R West Side"];
+       var EDDBSidLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=63A730411B8BDFA02D682B2E95EB5C2A&title=AD%202%20EDDB%205-7-6", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=1B72B0E227189023C6E5E1D81CACE102&title=AD%202%20EDDB%205-7-7", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=619ABB67F3E3F63057798FBA8155F6FC&title=AD%202%20EDDB%205-7-14", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=0FF8A7541A2C5119F421F96BAF41F46D&title=AD%202%20EDDB%205-7-15","https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=AF562855F8926A73D9A1E2A92DAC9B8E&title=AD%202%20EDDB%205-7-20", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=41D4D3CFC4E45D0BF220B0F150E751FA&title=AD%202%20EDDB%205-7-21", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=08E28D0A7678B7208898E86F89D35E69&title=AD%202%20EDDB%205-7-27", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=E0ED856B6BCC46BB39D0BDB32AEAE5ED&title=AD%202%20EDDB%205-7-28"];
+       var EDDBStarName = ["Rwy 07", "Rwy 25"];
+       var EDDBStarLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=08AC166169A3ABA272A127475EB48953&title=AD%202%20EDDB%203-1-1", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=C5EF680E1A621730C684EC83E9A561CB&title=AD%202%20EDDB%203-1-2"];
+       var EDDBIacName = ["ILS 07L", "ILS 07R", "ILS 25L", "ILS 25R"];
+       var EDDBIacLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=0CFEEE1DB26491CB140BF8E80BACBD85&title=AD%202%20EDDB%204-2-1", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=914AA4A14CB5116AF65F1DE55AFEEA94&title=AD%202%20EDDB%204-2-2", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=359F9926BFBFAD20F99CFF89F9353E82&title=AD%202%20EDDB%204-2-3", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=E2A2D6C4D7DBF6EB5AA927BBB9CB7D8E&title=AD%202%20EDDB%204-2-4"];
+
+       var EDDFGndName = ["Ground", "Apron"];
+       var EDDFGndLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=EDB26768B50B3B97ECD08A424D1D5E31&title=AD%202%20EDDF%202-5", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=3BA075DBA53D1A7B61AB7A3C961707D1&title=AD%202%20EDDF%202-7"]
+       var EDDFSidName = [""];
+       var EDDFSidLink = [""];
+       var EDDFStarName = ["Rwy 07 Unoko, Rolis (3-1-7)", "Rwy 07 Kerax, Spesa (3-1-8)", "Rwy 07 Empax (3-1-13)", "Rwy 07 Petix (3-1-17)", "Rwy 07 Fawur (3-1-21)", "Rwy 25 Unoku, Rolis (3-1-1)", "Rwy 25 Kerax, Spesa (3-1-2)", "Rwy 25 Empax (3-1-15)", "Rwy 25 Petix (3-1-19)", "Rwy 25 Fawur (3-1-32)", "STAR 1 (3-1-25)", "STAR 2 (3-1-26)", "STAR 3 (3-1-29)", "STAR 4 (3-1-30)"];
+       var EDDFStarLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=0C104C088ADA70A91079CB453BCA913D&title=AD%202%20EDDF%203-1-7", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=30FDC4094050D45F5BAD36A97A24A74A&title=AD%202%20EDDF%203-1-8", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=2357A5248D4D786AFBAD7762EDD62D3E&title=AD%202%20EDDF%203-1-13", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=30CE1CD35F644EB569ADF27DC4388BDE&title=AD%202%20EDDF%203-1-17", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=2A189E532201A5CA944FE9C257C9C125&title=AD%202%20EDDF%203-1-21", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=5C10FABDD5DC37730B86D059FF710CD7&title=AD%202%20EDDF%203-1-1", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=1190157E988CC834C06FAEC0FB6BE853&title=AD%202%20EDDF%203-1-2", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=8C4608FA3CE0E32850D60F12C28ABC24&title=AD%202%20EDDF%203-1-15", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=9FDBAB5648A8D79DA1AEB9228F341622&title=AD%202%20EDDF%203-1-19", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=1F70659E3F22C8550598CBE4F606A3D3&title=AD%202%20EDDF%203-1-23", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=CFB4A339375D4989C25FF469D44D5E87&title=AD%202%20EDDF%203-1-25", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=071F1B43E5936B65263E6FDEB313246D&title=AD%202%20EDDF%203-1-26", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=FB9C082F24D90029EC0F89DABD4C3A1D&title=AD%202%20EDDF%203-1-29", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=FBE1DC4EB16A3092F6245FF48F13B8DE&title=AD%202%20EDDF%203-1-30"];
+       var EDDFIacName = ["Rwy 07L", "Rwy 07C", "Rwy 07R", "Rwy 25L", "Rwy 25C", "Rwy 25R"];
+       var EDDFIacLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=4C231029B898AEF22330093C9BAFF59C&title=AD%202%20EDDF%204-2-1", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=18D32DBF01624ABE7862A7EAB206AB96&title=AD%202%20EDDF%204-2-3", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=71570123BBF79278FB533B9C9305DE1D&title=AD%202%20EDDF%204-2-5", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=C41F041CEEEABC06FF35B33B8188BD20&title=AD%202%20EDDF%204-2-7", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=5E10E301A64F6BD6330B93A40C6E43E5&title=AD%202%20EDDF%204-2-9", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=A3DB17399EAA4E292D11526790B02540&title=AD%202%20EDDF%204-2-11"];
+
+       var EDDHGndName = ["Ground", "Apron"];
+       var EDDHGndLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=6312A737DDE43ACF00C8B503E18A5190&title=AD%202%20EDDH%202-5", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=6C472B24B45F64E5E148D4CCAC4CB810&title=AD%202%20EDDH%202-7"];
+       var EDDHSidName = ["Ham VOR", "Rwy 05", "Rwy 15", "Rwy 23", "Rwy 33"];
+       var EDDHSidLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=4BA718395477905649976DB420439DD5&title=AD%202%20EDDH%205-7-2", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=D827A9B4DADB2FCD0DF71D32B68049EA&title=AD%202%20EDDH%205-7-3", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=9D66BE7DBD42DC6982F9B6A3F54FFF19&title=AD%202%20EDDH%205-7-6", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=C06B5C8B45B818A8F8D2FDA17B7BF06B&title=AD%202%20EDDH%205-7-9", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=600163C2E6669384CFF3CC7326045D27&title=AD%202%20EDDH%205-7-12"];
+       var EDDHStarName = ["Rwy 05", "Rwy 15", "Rwy 23", "Rwy 33"];
+       var EDDHStarLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=E9C9540C0CFD2302C08971A0D51EBD27&title=AD%202%20EDDH%203-1-1", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=A249D55C896534E877D6F35308F9DABF&title=AD%202%20EDDH%203-1-4", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=3172F85AA997CB128ADD5763F434CC52&title=AD%202%20EDDH%203-1-7", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=1021D9AFE4B8AD901FC7C1BBF3808F5F&title=AD%202%20EDDH%203-1-10"];
+       var EDDHIacName = ["ILS 05", "ILS 15", "ILS 23", "ILS 33"];
+       var EDDHIacLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=DEF9F58241DE42559DD7BD32FF6EC6A1&title=AD%202%20EDDH%204-2-1", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=855236D21D449EB0BBDD5D2C915CF8F7&title=AD%202%20EDDH%204-2-2", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=056D00BEC4ABF4796015E3D53A3737CB&title=AD%202%20EDDH%204-2-3", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=CB7A9527690996B6C83EAF890478C5C4&title=AD%202%20EDDH%204-2-4"];
+
+       var EDDLGndName = ["Ground", "Apron"];
+       var EDDLGndLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=696FA61359919B5353440E60B3687D34&title=AD%202%20EDDL%202-7", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=D116C120A9CA50029E0F271E787C62B6&title=AD%202%20EDDL%202-9"];
+       var EDDLSidName = ["Rwy 23L", "Rwy 23R", "Rwy 05R", "Rwy 05L"];
+       var EDDLSidLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=0FB0FA5940BE222A81105F87C3553FD2&title=AD%202%20EDDL%205-7-3", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=3F7D84DB7CA2C7D9C217116F493E4024&title=AD%202%20EDDL%205-7-90", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=F6EF670B4F9CC228EE6F2822E871E5C7&title=AD%202%20EDDL%205-7-13", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=0CCD8A86D3F85F3D9ADD15249FFB5838&title=AD%202%20EDDL%205-7-17"];
+       var EDDLStarName = [];
+       var EDDLStarLink = [];
+       var EDDLIacName = ["ILS 05L", "ILS 05R", "ILS 23L", "ILS 23R"];
+       var EDDLIacLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=87206F6B7611D39872AAA5AF46B620BD&title=AD%202%20EDDL%204-2-4", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=DA7003E46A4FE8C494892965CEC1DA4B&title=AD%202%20EDDL%204-2-3", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=16DED499B3E6DBB94E19CCB4F8B9F5CF&title=AD%202%20EDDL%204-2-1", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=03418059030E938B4B4F3C4DC414F779&title=AD%202%20EDDL%204-2-2"];
+
+       var EDDMGndName = ["Ground", "Apron"];
+       var EDDMGndLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=D5716E447257ED3420952E083937DE0F&title=AD%202%20EDDM%202-7", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=DC0D129334E06590E4D65C5CB247BDB7&title=AD%202%20EDDM%202-9"];
+       var EDDMSidName = [""];
+       var EDDMSidLink = [""];
+       var EDDMStarName = [""];
+       var EDDMStarLink = [""];
+       var EDDMIacName = ["ILS 08L", "ILS 08R", "ILS 26L", "ILS 26R"];
+       var EDDMIacLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=873763B4FD688C3DCFB9801BEA147BB5&title=AD%202%20EDDM%204-2-1", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=601B01BCE99100B7E47F1569DE9C2A72&title=AD%202%20EDDM%204-2-2", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=964F1FA23096BB11B809E0D2FF945917&title=AD%202%20EDDM%204-2-3", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=954C756552E949E4C3E2149006356DDC&title=AD%202%20EDDM%204-2-4"];
+
+       var EDDSGndName = ["Ground", "Apron"];
+       var EDDSGndLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=7954BF36059936BD92F33735DC702705&title=AD%202%20EDDS%202-5", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=20C90CCD19B785AC7CAA4FB292CCA54F&title=AD%202%20EDDS%202-7"];
+       var EDDSSidName = [];
+       var EDDSSidLink = [];
+       var EDDSStarName = [""];
+       var EDDSStarLink = [""];
+       var EDDSIacName = ["ILS 07", "ILS 25"];
+       var EDDSIacLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=04377C98D0625C2C45912C9FD7EA6447&title=AD%202%20EDDS%204-2-2", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=28DF04F844FFAD2D1AF79B6A16C2F668&title=AD%202%20EDDS%204-2-1"];
+
+
+        function SetVar(Btn) {
+
+            if (Btn == "Home"){
+                MenuVar = Btn;
+            }
+            if (Btn == "Gnd"){
+                MenuVar = Btn;
+            }
+            if (Btn == "Sid"){
+                MenuVar = Btn;
+            }
+            if (Btn == "Star"){
+                MenuVar = Btn;
+            }
+            if (Btn == "Iac"){
+                MenuVar = Btn;
+            }
+
+            if (Btn == "EDDB"){
+                AptVar = Btn;
+            }
+            if (Btn == "EDDF"){
+                AptVar = Btn;
+            }
+            if (Btn == "EDDH"){
+                AptVar = Btn;
+            }
+            if (Btn == "EDDL"){
+                AptVar = Btn;
+            }
+            if (Btn == "EDDM"){
+                AptVar = Btn;
+            }
+            if (Btn == "EDDS"){
+                AptVar = Btn;
+            }
+
+            document.getElementById("heading").innerHTML = MenuVar;
+            document.getElementById("AptBtn").innerHTML = "APT: " + AptVar;
+
+         
+            setButton()
+        }
+        function setButton() {
+            StorageBetween = window[AptVar+MenuVar+Name];
+            ButtonNumber = Object.keys(StorageBetween).length;
+            if (ButtonNumber == 0){
+                document.getElementById("ContentBtn0").style.visibility = "hidden";
+                document.getElementById("ContentBtn1").style.visibility = "hidden";
+                document.getElementById("ContentBtn2").style.visibility = "hidden";
+                document.getElementById("ContentBtn3").style.visibility = "hidden";
+                document.getElementById("ContentBtn4").style.visibility = "hidden";
+                document.getElementById("ContentBtn5").style.visibility = "hidden";
+                document.getElementById("ContentBtn6").style.visibility = "hidden";
+                document.getElementById("ContentBtn7").style.visibility = "hidden";
+                document.getElementById("ContentBtn8").style.visibility = "hidden";
+                document.getElementById("ContentBtn9").style.visibility = "hidden";
+                document.getElementById("ContentBtn10").style.visibility = "hidden";
+                document.getElementById("ContentBtn11").style.visibility = "hidden";
+                document.getElementById("ContentBtn12").style.visibility = "hidden";
+                document.getElementById("ContentBtn13").style.visibility = "hidden";
+                document.getElementById("ContentBtn14").style.visibility = "hidden";
+
+            }
+            if (ButtonNumber == 1){
+                document.getElementById("ContentBtn0").style.visibility = "visible";
+                document.getElementById("ContentBtn1").style.visibility = "hidden";
+                document.getElementById("ContentBtn2").style.visibility = "hidden";
+                document.getElementById("ContentBtn3").style.visibility = "hidden";
+                document.getElementById("ContentBtn4").style.visibility = "hidden";
+                document.getElementById("ContentBtn5").style.visibility = "hidden";
+                document.getElementById("ContentBtn6").style.visibility = "hidden";
+                document.getElementById("ContentBtn7").style.visibility = "hidden";
+                document.getElementById("ContentBtn8").style.visibility = "hidden";
+                document.getElementById("ContentBtn9").style.visibility = "hidden";
+                document.getElementById("ContentBtn10").style.visibility = "hidden";
+                document.getElementById("ContentBtn11").style.visibility = "hidden";
+                document.getElementById("ContentBtn12").style.visibility = "hidden";
+                document.getElementById("ContentBtn13").style.visibility = "hidden";
+                document.getElementById("ContentBtn14").style.visibility = "hidden";
+            }
+            if (ButtonNumber == 2){
+                document.getElementById("ContentBtn0").style.visibility = "visible";
+                document.getElementById("ContentBtn1").style.visibility = "visible";
+                document.getElementById("ContentBtn2").style.visibility = "hidden";
+                document.getElementById("ContentBtn3").style.visibility = "hidden";
+                document.getElementById("ContentBtn4").style.visibility = "hidden";
+                document.getElementById("ContentBtn5").style.visibility = "hidden";
+                document.getElementById("ContentBtn6").style.visibility = "hidden";
+                document.getElementById("ContentBtn7").style.visibility = "hidden";
+                document.getElementById("ContentBtn8").style.visibility = "hidden";
+                document.getElementById("ContentBtn9").style.visibility = "hidden";
+                document.getElementById("ContentBtn10").style.visibility = "hidden";
+                document.getElementById("ContentBtn11").style.visibility = "hidden";
+                document.getElementById("ContentBtn12").style.visibility = "hidden";
+                document.getElementById("ContentBtn13").style.visibility = "hidden";
+                document.getElementById("ContentBtn14").style.visibility = "hidden";
+            }
+            if (ButtonNumber == 3){
+                document.getElementById("ContentBtn0").style.visibility = "visible";
+                document.getElementById("ContentBtn1").style.visibility = "visible";
+                document.getElementById("ContentBtn2").style.visibility = "visible";
+                document.getElementById("ContentBtn3").style.visibility = "hidden";
+                document.getElementById("ContentBtn4").style.visibility = "hidden";
+                document.getElementById("ContentBtn5").style.visibility = "hidden";
+                document.getElementById("ContentBtn6").style.visibility = "hidden";
+                document.getElementById("ContentBtn7").style.visibility = "hidden";
+                document.getElementById("ContentBtn8").style.visibility = "hidden";
+                document.getElementById("ContentBtn9").style.visibility = "hidden";
+                document.getElementById("ContentBtn10").style.visibility = "hidden";
+                document.getElementById("ContentBtn11").style.visibility = "hidden";
+                document.getElementById("ContentBtn12").style.visibility = "hidden";
+                document.getElementById("ContentBtn13").style.visibility = "hidden";
+                document.getElementById("ContentBtn14").style.visibility = "hidden";
+            }
+            if (ButtonNumber == 4){
+                document.getElementById("ContentBtn0").style.visibility = "visible";
+                document.getElementById("ContentBtn1").style.visibility = "visible";
+                document.getElementById("ContentBtn2").style.visibility = "visible";
+                document.getElementById("ContentBtn3").style.visibility = "visible";
+                document.getElementById("ContentBtn4").style.visibility = "hidden";
+                document.getElementById("ContentBtn5").style.visibility = "hidden";
+                document.getElementById("ContentBtn6").style.visibility = "hidden";
+                document.getElementById("ContentBtn7").style.visibility = "hidden";
+                document.getElementById("ContentBtn8").style.visibility = "hidden";
+                document.getElementById("ContentBtn9").style.visibility = "hidden";
+                document.getElementById("ContentBtn10").style.visibility = "hidden";
+                document.getElementById("ContentBtn11").style.visibility = "hidden";
+                document.getElementById("ContentBtn12").style.visibility = "hidden";
+                document.getElementById("ContentBtn13").style.visibility = "hidden";
+                document.getElementById("ContentBtn14").style.visibility = "hidden";
+            }
+            if (ButtonNumber == 5){
+                document.getElementById("ContentBtn0").style.visibility = "visible";
+                document.getElementById("ContentBtn1").style.visibility = "visible";
+                document.getElementById("ContentBtn2").style.visibility = "visible";
+                document.getElementById("ContentBtn3").style.visibility = "visible";
+                document.getElementById("ContentBtn4").style.visibility = "visible";
+                document.getElementById("ContentBtn5").style.visibility = "hidden";
+                document.getElementById("ContentBtn6").style.visibility = "hidden";
+                document.getElementById("ContentBtn7").style.visibility = "hidden";
+                document.getElementById("ContentBtn8").style.visibility = "hidden";
+                document.getElementById("ContentBtn9").style.visibility = "hidden";
+                document.getElementById("ContentBtn10").style.visibility = "hidden";
+                document.getElementById("ContentBtn11").style.visibility = "hidden";
+                document.getElementById("ContentBtn12").style.visibility = "hidden";
+                document.getElementById("ContentBtn13").style.visibility = "hidden";
+                document.getElementById("ContentBtn14").style.visibility = "hidden";
+            }
+            if (ButtonNumber == 6){
+                document.getElementById("ContentBtn0").style.visibility = "visible";
+                document.getElementById("ContentBtn1").style.visibility = "visible";
+                document.getElementById("ContentBtn2").style.visibility = "visible";
+                document.getElementById("ContentBtn3").style.visibility = "visible";
+                document.getElementById("ContentBtn4").style.visibility = "visible";
+                document.getElementById("ContentBtn5").style.visibility = "visible";
+                document.getElementById("ContentBtn6").style.visibility = "hidden";
+                document.getElementById("ContentBtn7").style.visibility = "hidden";
+                document.getElementById("ContentBtn8").style.visibility = "hidden";
+                document.getElementById("ContentBtn9").style.visibility = "hidden";
+                document.getElementById("ContentBtn10").style.visibility = "hidden";
+                document.getElementById("ContentBtn11").style.visibility = "hidden";
+                document.getElementById("ContentBtn12").style.visibility = "hidden";
+                document.getElementById("ContentBtn13").style.visibility = "hidden";
+                document.getElementById("ContentBtn14").style.visibility = "hidden";
+            }
+            if (ButtonNumber == 7){
+                document.getElementById("ContentBtn0").style.visibility = "visible";
+                document.getElementById("ContentBtn1").style.visibility = "visible";
+                document.getElementById("ContentBtn2").style.visibility = "visible";
+                document.getElementById("ContentBtn3").style.visibility = "visible";
+                document.getElementById("ContentBtn4").style.visibility = "visible";
+                document.getElementById("ContentBtn5").style.visibility = "visible";
+                document.getElementById("ContentBtn6").style.visibility = "visible";
+                document.getElementById("ContentBtn7").style.visibility = "hidden";
+                document.getElementById("ContentBtn8").style.visibility = "hidden";
+                document.getElementById("ContentBtn9").style.visibility = "hidden";
+                document.getElementById("ContentBtn10").style.visibility = "hidden";
+                document.getElementById("ContentBtn11").style.visibility = "hidden";
+                document.getElementById("ContentBtn12").style.visibility = "hidden";
+                document.getElementById("ContentBtn13").style.visibility = "hidden";
+                document.getElementById("ContentBtn14").style.visibility = "hidden";
+            }
+            if (ButtonNumber == 8){
+                document.getElementById("ContentBtn0").style.visibility = "visible";
+                document.getElementById("ContentBtn1").style.visibility = "visible";
+                document.getElementById("ContentBtn2").style.visibility = "visible";
+                document.getElementById("ContentBtn3").style.visibility = "visible";
+                document.getElementById("ContentBtn4").style.visibility = "visible";
+                document.getElementById("ContentBtn5").style.visibility = "visible";
+                document.getElementById("ContentBtn6").style.visibility = "visible";
+                document.getElementById("ContentBtn7").style.visibility = "visible";
+                document.getElementById("ContentBtn8").style.visibility = "hidden";
+                document.getElementById("ContentBtn9").style.visibility = "hidden";
+                document.getElementById("ContentBtn10").style.visibility = "hidden";
+                document.getElementById("ContentBtn11").style.visibility = "hidden";
+                document.getElementById("ContentBtn12").style.visibility = "hidden";
+                document.getElementById("ContentBtn13").style.visibility = "hidden";
+                document.getElementById("ContentBtn14").style.visibility = "hidden";
+            }
+            if (ButtonNumber == 9){
+                document.getElementById("ContentBtn0").style.visibility = "visible";
+                document.getElementById("ContentBtn1").style.visibility = "visible";
+                document.getElementById("ContentBtn2").style.visibility = "visible";
+                document.getElementById("ContentBtn3").style.visibility = "visible";
+                document.getElementById("ContentBtn4").style.visibility = "visible";
+                document.getElementById("ContentBtn5").style.visibility = "visible";
+                document.getElementById("ContentBtn6").style.visibility = "visible";
+                document.getElementById("ContentBtn7").style.visibility = "visible";
+                document.getElementById("ContentBtn8").style.visibility = "visible";
+                document.getElementById("ContentBtn9").style.visibility = "hidden";
+                document.getElementById("ContentBtn10").style.visibility = "hidden";
+                document.getElementById("ContentBtn11").style.visibility = "hidden";
+                document.getElementById("ContentBtn12").style.visibility = "hidden";
+                document.getElementById("ContentBtn13").style.visibility = "hidden";
+                document.getElementById("ContentBtn14").style.visibility = "hidden";
+            }
+            if (ButtonNumber == 10){
+                document.getElementById("ContentBtn0").style.visibility = "visible";
+                document.getElementById("ContentBtn1").style.visibility = "visible";
+                document.getElementById("ContentBtn2").style.visibility = "visible";
+                document.getElementById("ContentBtn3").style.visibility = "visible";
+                document.getElementById("ContentBtn4").style.visibility = "visible";
+                document.getElementById("ContentBtn5").style.visibility = "visible";
+                document.getElementById("ContentBtn6").style.visibility = "visible";
+                document.getElementById("ContentBtn7").style.visibility = "visible";
+                document.getElementById("ContentBtn8").style.visibility = "visible";
+                document.getElementById("ContentBtn9").style.visibility = "visible";
+                document.getElementById("ContentBtn10").style.visibility = "hidden";
+                document.getElementById("ContentBtn11").style.visibility = "hidden";
+                document.getElementById("ContentBtn12").style.visibility = "hidden";
+                document.getElementById("ContentBtn13").style.visibility = "hidden";
+                document.getElementById("ContentBtn14").style.visibility = "hidden";
+            }
+            if (ButtonNumber == 11){
+                document.getElementById("ContentBtn0").style.visibility = "visible";
+                document.getElementById("ContentBtn1").style.visibility = "visible";
+                document.getElementById("ContentBtn2").style.visibility = "visible";
+                document.getElementById("ContentBtn3").style.visibility = "visible";
+                document.getElementById("ContentBtn4").style.visibility = "visible";
+                document.getElementById("ContentBtn5").style.visibility = "visible";
+                document.getElementById("ContentBtn6").style.visibility = "visible";
+                document.getElementById("ContentBtn7").style.visibility = "visible";
+                document.getElementById("ContentBtn8").style.visibility = "visible";
+                document.getElementById("ContentBtn9").style.visibility = "visible";
+                document.getElementById("ContentBtn10").style.visibility = "visible";
+                document.getElementById("ContentBtn11").style.visibility = "hidden";
+                document.getElementById("ContentBtn12").style.visibility = "hidden";
+                document.getElementById("ContentBtn13").style.visibility = "hidden";
+                document.getElementById("ContentBtn14").style.visibility = "hidden";
+            }
+            if (ButtonNumber == 12){
+                document.getElementById("ContentBtn0").style.visibility = "visible";
+                document.getElementById("ContentBtn1").style.visibility = "visible";
+                document.getElementById("ContentBtn2").style.visibility = "visible";
+                document.getElementById("ContentBtn3").style.visibility = "visible";
+                document.getElementById("ContentBtn4").style.visibility = "visible";
+                document.getElementById("ContentBtn5").style.visibility = "visible";
+                document.getElementById("ContentBtn6").style.visibility = "visible";
+                document.getElementById("ContentBtn7").style.visibility = "visible";
+                document.getElementById("ContentBtn8").style.visibility = "visible";
+                document.getElementById("ContentBtn9").style.visibility = "visible";
+                document.getElementById("ContentBtn10").style.visibility = "visible";
+                document.getElementById("ContentBtn11").style.visibility = "visible";
+                document.getElementById("ContentBtn12").style.visibility = "hidden";
+                document.getElementById("ContentBtn13").style.visibility = "hidden";
+                document.getElementById("ContentBtn14").style.visibility = "hidden";
+            }
+            if (ButtonNumber == 13){
+                document.getElementById("ContentBtn0").style.visibility = "visible";
+                document.getElementById("ContentBtn1").style.visibility = "visible";
+                document.getElementById("ContentBtn2").style.visibility = "visible";
+                document.getElementById("ContentBtn3").style.visibility = "visible";
+                document.getElementById("ContentBtn4").style.visibility = "visible";
+                document.getElementById("ContentBtn5").style.visibility = "visible";
+                document.getElementById("ContentBtn6").style.visibility = "visible";
+                document.getElementById("ContentBtn7").style.visibility = "visible";
+                document.getElementById("ContentBtn8").style.visibility = "visible";
+                document.getElementById("ContentBtn9").style.visibility = "visible";
+                document.getElementById("ContentBtn10").style.visibility = "visible";
+                document.getElementById("ContentBtn11").style.visibility = "visible";
+                document.getElementById("ContentBtn12").style.visibility = "visible";
+                document.getElementById("ContentBtn13").style.visibility = "hidden";
+                document.getElementById("ContentBtn14").style.visibility = "hidden";
+            }
+            if (ButtonNumber == 14){
+                document.getElementById("ContentBtn0").style.visibility = "visible";
+                document.getElementById("ContentBtn1").style.visibility = "visible";
+                document.getElementById("ContentBtn2").style.visibility = "visible";
+                document.getElementById("ContentBtn3").style.visibility = "visible";
+                document.getElementById("ContentBtn4").style.visibility = "visible";
+                document.getElementById("ContentBtn5").style.visibility = "visible";
+                document.getElementById("ContentBtn6").style.visibility = "visible";
+                document.getElementById("ContentBtn7").style.visibility = "visible";
+                document.getElementById("ContentBtn8").style.visibility = "visible";
+                document.getElementById("ContentBtn9").style.visibility = "visible";
+                document.getElementById("ContentBtn10").style.visibility = "visible";
+                document.getElementById("ContentBtn11").style.visibility = "visible";
+                document.getElementById("ContentBtn12").style.visibility = "visible";
+                document.getElementById("ContentBtn13").style.visibility = "visible";
+                document.getElementById("ContentBtn14").style.visibility = "hidden";
+            }
+            if (ButtonNumber == 15){
+                document.getElementById("ContentBtn0").style.visibility = "visible";
+                document.getElementById("ContentBtn1").style.visibility = "visible";
+                document.getElementById("ContentBtn2").style.visibility = "visible";
+                document.getElementById("ContentBtn3").style.visibility = "visible";
+                document.getElementById("ContentBtn4").style.visibility = "visible";
+                document.getElementById("ContentBtn5").style.visibility = "visible";
+                document.getElementById("ContentBtn6").style.visibility = "visible";
+                document.getElementById("ContentBtn7").style.visibility = "visible";
+                document.getElementById("ContentBtn8").style.visibility = "visible";
+                document.getElementById("ContentBtn9").style.visibility = "visible";
+                document.getElementById("ContentBtn10").style.visibility = "visible";
+                document.getElementById("ContentBtn11").style.visibility = "visible";
+                document.getElementById("ContentBtn12").style.visibility = "visible";
+                document.getElementById("ContentBtn13").style.visibility = "visible";
+                document.getElementById("ContentBtn14").style.visibility = "visible";
+            }
+
+
+
+
+            document.getElementById("ContentBtn0").innerHTML = window[AptVar+MenuVar+Name][0];
+            document.getElementById("ContentBtn1").innerHTML = window[AptVar+MenuVar+Name][1];
+            document.getElementById("ContentBtn2").innerHTML = window[AptVar+MenuVar+Name][2];
+            document.getElementById("ContentBtn3").innerHTML = window[AptVar+MenuVar+Name][3];
+            document.getElementById("ContentBtn4").innerHTML = window[AptVar+MenuVar+Name][4];
+            document.getElementById("ContentBtn5").innerHTML = window[AptVar+MenuVar+Name][5];
+            document.getElementById("ContentBtn6").innerHTML = window[AptVar+MenuVar+Name][6];
+            document.getElementById("ContentBtn7").innerHTML = window[AptVar+MenuVar+Name][7];
+            document.getElementById("ContentBtn8").innerHTML = window[AptVar+MenuVar+Name][8];
+            document.getElementById("ContentBtn9").innerHTML = window[AptVar+MenuVar+Name][9];
+            document.getElementById("ContentBtn10").innerHTML = window[AptVar+MenuVar+Name][10];
+            document.getElementById("ContentBtn11").innerHTML = window[AptVar+MenuVar+Name][11];
+            document.getElementById("ContentBtn12").innerHTML = window[AptVar+MenuVar+Name][12];
+            document.getElementById("ContentBtn13").innerHTML = window[AptVar+MenuVar+Name][13];
+            document.getElementById("ContentBtn14").innerHTML = window[AptVar+MenuVar+Name][14];
+
+            document.getElementById("ContentBtn0").href = window[AptVar+MenuVar+Link][0];
+            document.getElementById("ContentBtn1").href = window[AptVar+MenuVar+Link][1];
+            document.getElementById("ContentBtn2").href = window[AptVar+MenuVar+Link][2];
+            document.getElementById("ContentBtn3").href = window[AptVar+MenuVar+Link][3];
+            document.getElementById("ContentBtn4").href = window[AptVar+MenuVar+Link][4];
+            document.getElementById("ContentBtn5").href = window[AptVar+MenuVar+Link][5];
+            document.getElementById("ContentBtn6").href = window[AptVar+MenuVar+Link][6];
+            document.getElementById("ContentBtn7").href = window[AptVar+MenuVar+Link][7];
+            document.getElementById("ContentBtn8").href = window[AptVar+MenuVar+Link][8];
+            document.getElementById("ContentBtn9").href = window[AptVar+MenuVar+Link][9];
+            document.getElementById("ContentBtn10").href = window[AptVar+MenuVar+Link][10];
+            document.getElementById("ContentBtn11").href = window[AptVar+MenuVar+Link][11];
+            document.getElementById("ContentBtn12").href = window[AptVar+MenuVar+Link][12];
+            document.getElementById("ContentBtn13").href = window[AptVar+MenuVar+Link][13];
+            document.getElementById("ContentBtn14").href = window[AptVar+MenuVar+Link][14];
+        }
+
+   </script>
+</body>
+</html> 
