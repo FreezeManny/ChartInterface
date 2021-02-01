@@ -24,6 +24,7 @@
                 </div>
               </div>
               <input type="password" id="pass">
+              <p onclick="setButton();" id="LockLable">Locked</p>
         </div>
         <div class="main">
             <h1 id="heading">Home</h1>
@@ -175,6 +176,9 @@
             StorageBetween = window[AptVar+MenuVar+Name];
             ButtonNumber = Object.keys(StorageBetween).length;
             if (document.getElementById("pass").value != "eddfeddm"){
+
+                document.getElementById("LockLable").style.color = "red";
+                document.getElementById("LockLable").innerHTML = "Locked";
                 
                 document.getElementById("ContentBtn0").style.visibility = "hidden";
                 document.getElementById("ContentBtn1").style.visibility = "hidden";
@@ -194,6 +198,8 @@
             
             }
             else {
+                document.getElementById("LockLable").style.color = "green";
+                document.getElementById("LockLable").innerHTML = "Unlocked";
             
                 if (ButtonNumber == 0){
                 document.getElementById("ContentBtn0").style.visibility = "hidden";
