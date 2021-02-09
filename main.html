@@ -44,6 +44,7 @@
             <a href="#" class="ContentBtn" id="ContentBtn12" target="_blank">ContentBtn12</a>
             <a href="#" class="ContentBtn" id="ContentBtn13" target="_blank">ContentBtn13</a>
             <a href="#" class="ContentBtn" id="ContentBtn14" target="_blank">ContentBtn14</a>
+            <a href="#" class="ContentBtn" id="ContentBtn15" target="_blank">ContentBtn15</a>
 
             
         </div>
@@ -83,8 +84,10 @@
 
        var EDDFGndName = ["Ground", "Apron"];
        var EDDFGndLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=EDB26768B50B3B97ECD08A424D1D5E31&title=AD%202%20EDDF%202-5", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=3BA075DBA53D1A7B61AB7A3C961707D1&title=AD%202%20EDDF%202-7"]
+       
        var EDDFSidName = [""];
        var EDDFSidLink = [""];
+       
        var EDDFStarName = ["Rwy 07 Unoko, Rolis (3-1-7)", "Rwy 07 Kerax, Spesa (3-1-8)", "Rwy 07 Empax (3-1-13)", "Rwy 07 Petix (3-1-17)", "Rwy 07 Fawur (3-1-21)", "Rwy 25 Unoku, Rolis (3-1-1)", "Rwy 25 Kerax, Spesa (3-1-2)", "Rwy 25 Empax (3-1-15)", "Rwy 25 Petix (3-1-19)", "Rwy 25 Fawur (3-1-32)", "STAR 1 (3-1-25)", "STAR 2 (3-1-26)", "STAR 3 (3-1-29)", "STAR 4 (3-1-30)"];
        var EDDFStarLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=0C104C088ADA70A91079CB453BCA913D&title=AD%202%20EDDF%203-1-7", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=30FDC4094050D45F5BAD36A97A24A74A&title=AD%202%20EDDF%203-1-8", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=2357A5248D4D786AFBAD7762EDD62D3E&title=AD%202%20EDDF%203-1-13", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=30CE1CD35F644EB569ADF27DC4388BDE&title=AD%202%20EDDF%203-1-17", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=2A189E532201A5CA944FE9C257C9C125&title=AD%202%20EDDF%203-1-21", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=5C10FABDD5DC37730B86D059FF710CD7&title=AD%202%20EDDF%203-1-1", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=1190157E988CC834C06FAEC0FB6BE853&title=AD%202%20EDDF%203-1-2", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=8C4608FA3CE0E32850D60F12C28ABC24&title=AD%202%20EDDF%203-1-15", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=9FDBAB5648A8D79DA1AEB9228F341622&title=AD%202%20EDDF%203-1-19", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=1F70659E3F22C8550598CBE4F606A3D3&title=AD%202%20EDDF%203-1-23", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=CFB4A339375D4989C25FF469D44D5E87&title=AD%202%20EDDF%203-1-25", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=071F1B43E5936B65263E6FDEB313246D&title=AD%202%20EDDF%203-1-26", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=FB9C082F24D90029EC0F89DABD4C3A1D&title=AD%202%20EDDF%203-1-29", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=FBE1DC4EB16A3092F6245FF48F13B8DE&title=AD%202%20EDDF%203-1-30"];
        var EDDFIacName = ["Rwy 07L", "Rwy 07C", "Rwy 07R", "Rwy 25L", "Rwy 25C", "Rwy 25R"];
@@ -110,19 +113,19 @@
 
        var EDDMGndName = ["Ground", "Apron"];
        var EDDMGndLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=D5716E447257ED3420952E083937DE0F&title=AD%202%20EDDM%202-7", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=DC0D129334E06590E4D65C5CB247BDB7&title=AD%202%20EDDM%202-9"];
-       var EDDMSidName = [""];
-       var EDDMSidLink = [""];
-       var EDDMStarName = [""];
-       var EDDMStarLink = [""];
+       var EDDMSidName = ["Rwy 08L Givmi, Ridar", "Rwy 08L Bibag, Kirdi, Rotax, Vavor, Turbu, ulsi, Mersi, Dabaxa, Olaso, Alg", "Rwy 08L Inpud, Eviva, Anker", "Rwy 08L Akini", "Rwy 08R Ridar, Givmi", "Rwy 08R Bibag, Kirdi, Rotax, Vavor, Valor, Turbo, TUlsi, Mersi, Obaka, Alg, Olaso", "Rwy 08R Inpud, Eviva, Anker", "Rwy 08R Akini", "Rwy 26L Ridar, Givmi, Mike", "Rwy 26L Bibag, Kirdi, Rotax, Vavor, Turbu, Tulsi, Obaxa, Mersi, Alg, Olaso", "Rwy 26L Inpud, Eviva, Anker", "Rwy 26L Akini", "Rwy 26R Ridar, Givmi, MIQ", "Rwy 26R Bibag, Kirdi, Rotax, Vavor, Turbu, Tulsi, Obaxa, Mersi, Amexo, Olaso", "Rwy 26R Inpud, Eviva, Anker", "Rwy 26R Akini"];
+       var EDDMSidLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=43373E99CE5371A990C41C711E778B58&title=AD%202%20EDDM%205-7-5", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=B5DA81A84C924226D2050DEC4C2D9B4E&title=AD%202%20EDDM%205-7-7", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=C067212F75B9FFCFACD3C5A2F3B2C307&title=AD%202%20EDDM%205-7-9", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=E842C5FE16240B90C5AF3EB289EF640D&title=AD%202%20EDDM%205-7-11", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=AD6D1FF07E4388BA943F25D2B9C86807&title=AD%202%20EDDM%205-7-17", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=AACFEEB3ED48B07046E0A18E9F894FD1&title=AD%202%20EDDM%205-7-19", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=77308596FA2903EA8DC86B704E830CAF&title=AD%202%20EDDM%205-7-21", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=96E979EE2E2F6EFBEFAB349A46DAD9BD&title=AD%202%20EDDM%205-7-23", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=DB6648CF2D0D336F6792D19D77F9B39B&title=AD%202%20EDDM%205-7-29", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=BB7B9286D4998AEDCA6D61ECFFD28237&title=AD%202%20EDDM%205-7-310", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=987E3260AAE0C4FB9553D441B388EA6A&title=AD%202%20EDDM%205-7-33", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=A792D32D03DB958F75AF9EED6D582400&title=AD%202%20EDDM%205-7-35", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=0715D1EE4B85A6FD7D1F458B7EA83F28&title=AD%202%20EDDM%205-7-41","https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=29DAAE6C072CD8093B084FC3FCAA9955&title=AD%202%20EDDM%205-7-43","https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=029D7FCBD4375C4991D8DA8DD029EDBB&title=AD%202%20EDDM%205-7-45","https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=CCF38DB611460EEA9BAA2838603900F8&title=AD%202%20EDDM%205-7-47"];
+       var EDDMStarName = ["Star NW Pelog, Kunod, Geslu, Abgas, Rixed, Anora, Akanu", "Star NE Exusi, Bagmi, Arbax, Bamta", "Star SW Mersi, Osder, Irbir, Obaga, Kogol", "Star SE Napsa", "Rwy 08 Rokil, Landu (3-1-8)", "Rwy 08 Betos, Napsa (3-1-9)", "Rwy 08 Lular, Vesub, Nirgo (3-1-12) (1/2)", "Rwy 08 Lular, Vesub, Nirgo (3-1-13) (2/2)", "Rwy 08 Bagsi, Vatet, Rasta (3-1-16) (1/2)", "Rwy 08 Bagsi, Vatet, Rasta (3-1-17) (2/2)", "Rwy 26 Rokil, Landu (3-1-10)", "Rwy 26 Betso, Napsa (3-1-11)", "Rwy 26 Elmox, Levbu (3-1-14) (1/2)", "Rwy 26 Elmox, Levbu (3-1-14) (2/2)"];
+       var EDDMStarLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=D52DBC0FE20B4C239725DE8AAE817EF8&title=AD%202%20EDDM%203-1-4", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=B47880B78E1F956ED5D01B1AA9617910&title=AD%202%20EDDM%203-1-5", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=48C9DB4A7CAA51BDE66FF60E52695D89&title=AD%202%20EDDM%203-1-6", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=68615BB365956B2073B2E4D8708ED419&title=AD%202%20EDDM%203-1-7", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=47CBB5619E718822B9E74BA4A7E2EFF8&title=AD%202%20EDDM%203-1-8", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=A3A9576BA8CA59ABCA620992CABA7FE2&title=AD%202%20EDDM%203-1-9", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=372BF16085B693740724E0D4E1ED9652&title=AD%202%20EDDM%203-1-12", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=8929B80C47448C641BB9C5841564342A&title=AD%202%20EDDM%203-1-13", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=B5918C5750AB6F3C9390A3E96634066A&title=AD%202%20EDDM%203-1-16", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=0E76D16A7DD90C4CDA79AA0CF24E5BB9&title=AD%202%20EDDM%203-1-17", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=5652BB10014996C6D78C1AFE5813A83C&title=AD%202%20EDDM%203-1-10", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=B2538C8AA5DC0B2BDBD19F7293F38AD5&title=AD%202%20EDDM%203-1-11", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=47FA177BF647A21B6849F19AD95F0647&title=AD%202%20EDDM%203-1-14", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=79CADAA9A18EC00F5DA2E4C303570581&title=AD%202%20EDDM%203-1-15"];
        var EDDMIacName = ["ILS 08L", "ILS 08R", "ILS 26L", "ILS 26R"];
        var EDDMIacLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=873763B4FD688C3DCFB9801BEA147BB5&title=AD%202%20EDDM%204-2-1", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=601B01BCE99100B7E47F1569DE9C2A72&title=AD%202%20EDDM%204-2-2", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=964F1FA23096BB11B809E0D2FF945917&title=AD%202%20EDDM%204-2-3", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=954C756552E949E4C3E2149006356DDC&title=AD%202%20EDDM%204-2-4"];
 
        var EDDSGndName = ["Ground", "Apron"];
        var EDDSGndLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=7954BF36059936BD92F33735DC702705&title=AD%202%20EDDS%202-5", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=20C90CCD19B785AC7CAA4FB292CCA54F&title=AD%202%20EDDS%202-7"];
-       var EDDSSidName = [];
-       var EDDSSidLink = [];
-       var EDDSStarName = [""];
-       var EDDSStarLink = [""];
+       var EDDSSidName = ["Rwy 07", "Rwy 25"];
+       var EDDSSidLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=E573E0744439219F961AB09D8930A01A&title=AD%202%20EDDS%205-7-7", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=67E5FE4B7A334511F8D5F762DCAC77FA&title=AD%202%20EDDS%205-7-3"];
+       var EDDSStarName = ["Star Rwy 07/25", "Rnav Rwy 07", "Rnav Rwy 07 CDO", "Rnav Rwy 25", "Rnav Rwy 25 CDO"];
+       var EDDSStarLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=89976781E0F24B5940CB570E7F486936&title=AD%202%20EDDS%203-1-2", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=33469952090B3F77F504A193B6DEE7BC&title=AD%202%20EDDS%203-1-3", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=D8A61CE756E56ECF0C716160904E017A&title=AD%202%20EDDS%203-1-5", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=1F998A1C3BEB157CFDCD4D85EEF3023C&title=AD%202%20EDDS%203-1-4", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=9E754F9223FDFDCD018CF64DEADC8D9E&title=AD%202%20EDDS%203-1-6"];
        var EDDSIacName = ["ILS 07", "ILS 25"];
        var EDDSIacLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=04377C98D0625C2C45912C9FD7EA6447&title=AD%202%20EDDS%204-2-2", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=28DF04F844FFAD2D1AF79B6A16C2F668&title=AD%202%20EDDS%204-2-1"];
 
@@ -195,6 +198,7 @@
                 document.getElementById("ContentBtn12").style.visibility = "hidden";
                 document.getElementById("ContentBtn13").style.visibility = "hidden";
                 document.getElementById("ContentBtn14").style.visibility = "hidden";
+                document.getElementById("ContentBtn15").style.visibility = "hidden";
             
             }
             else {
@@ -217,6 +221,7 @@
                 document.getElementById("ContentBtn12").style.visibility = "hidden";
                 document.getElementById("ContentBtn13").style.visibility = "hidden";
                 document.getElementById("ContentBtn14").style.visibility = "hidden";
+                document.getElementById("ContentBtn15").style.visibility = "hidden";
 
             }
             
@@ -236,6 +241,7 @@
                     document.getElementById("ContentBtn12").style.visibility = "hidden";
                     document.getElementById("ContentBtn13").style.visibility = "hidden";
                     document.getElementById("ContentBtn14").style.visibility = "hidden";
+                    document.getElementById("ContentBtn15").style.visibility = "hidden";
                 }
                 if (ButtonNumber == 2){
                     document.getElementById("ContentBtn0").style.visibility = "visible";
@@ -253,6 +259,7 @@
                     document.getElementById("ContentBtn12").style.visibility = "hidden";
                     document.getElementById("ContentBtn13").style.visibility = "hidden";
                     document.getElementById("ContentBtn14").style.visibility = "hidden";
+                    document.getElementById("ContentBtn15").style.visibility = "hidden";
                 }
                 if (ButtonNumber == 3){
                     document.getElementById("ContentBtn0").style.visibility = "visible";
@@ -270,6 +277,7 @@
                     document.getElementById("ContentBtn12").style.visibility = "hidden";
                     document.getElementById("ContentBtn13").style.visibility = "hidden";
                     document.getElementById("ContentBtn14").style.visibility = "hidden";
+                    document.getElementById("ContentBtn15").style.visibility = "hidden";
                 }
                 if (ButtonNumber == 4){
                     document.getElementById("ContentBtn0").style.visibility = "visible";
@@ -287,6 +295,7 @@
                     document.getElementById("ContentBtn12").style.visibility = "hidden";
                     document.getElementById("ContentBtn13").style.visibility = "hidden";
                     document.getElementById("ContentBtn14").style.visibility = "hidden";
+                    document.getElementById("ContentBtn15").style.visibility = "hidden";
                 }
                 if (ButtonNumber == 5){
                     document.getElementById("ContentBtn0").style.visibility = "visible";
@@ -304,6 +313,7 @@
                     document.getElementById("ContentBtn12").style.visibility = "hidden";
                     document.getElementById("ContentBtn13").style.visibility = "hidden";
                     document.getElementById("ContentBtn14").style.visibility = "hidden";
+                    document.getElementById("ContentBtn15").style.visibility = "hidden";
                 }
                 if (ButtonNumber == 6){
                     document.getElementById("ContentBtn0").style.visibility = "visible";
@@ -321,6 +331,7 @@
                     document.getElementById("ContentBtn12").style.visibility = "hidden";
                     document.getElementById("ContentBtn13").style.visibility = "hidden";
                     document.getElementById("ContentBtn14").style.visibility = "hidden";
+                    document.getElementById("ContentBtn15").style.visibility = "hidden";
                 }
                 if (ButtonNumber == 7){
                     document.getElementById("ContentBtn0").style.visibility = "visible";
@@ -338,6 +349,7 @@
                     document.getElementById("ContentBtn12").style.visibility = "hidden";
                     document.getElementById("ContentBtn13").style.visibility = "hidden";
                     document.getElementById("ContentBtn14").style.visibility = "hidden";
+                    document.getElementById("ContentBtn15").style.visibility = "hidden";
                 }
                 if (ButtonNumber == 8){
                     document.getElementById("ContentBtn0").style.visibility = "visible";
@@ -355,6 +367,7 @@
                     document.getElementById("ContentBtn12").style.visibility = "hidden";
                     document.getElementById("ContentBtn13").style.visibility = "hidden";
                     document.getElementById("ContentBtn14").style.visibility = "hidden";
+                    document.getElementById("ContentBtn15").style.visibility = "hidden";
                 }
                 if (ButtonNumber == 9){
                     document.getElementById("ContentBtn0").style.visibility = "visible";
@@ -372,6 +385,7 @@
                     document.getElementById("ContentBtn12").style.visibility = "hidden";
                     document.getElementById("ContentBtn13").style.visibility = "hidden";
                     document.getElementById("ContentBtn14").style.visibility = "hidden";
+                    document.getElementById("ContentBtn15").style.visibility = "hidden";
                 }
                 if (ButtonNumber == 10){
                     document.getElementById("ContentBtn0").style.visibility = "visible";
@@ -389,6 +403,7 @@
                     document.getElementById("ContentBtn12").style.visibility = "hidden";
                     document.getElementById("ContentBtn13").style.visibility = "hidden";
                     document.getElementById("ContentBtn14").style.visibility = "hidden";
+                    document.getElementById("ContentBtn15").style.visibility = "hidden";
                 }
                 if (ButtonNumber == 11){
                     document.getElementById("ContentBtn0").style.visibility = "visible";
@@ -406,6 +421,7 @@
                     document.getElementById("ContentBtn12").style.visibility = "hidden";
                     document.getElementById("ContentBtn13").style.visibility = "hidden";
                     document.getElementById("ContentBtn14").style.visibility = "hidden";
+                    document.getElementById("ContentBtn15").style.visibility = "hidden";
                 }
                 if (ButtonNumber == 12){
                     document.getElementById("ContentBtn0").style.visibility = "visible";
@@ -423,6 +439,7 @@
                     document.getElementById("ContentBtn12").style.visibility = "hidden";
                     document.getElementById("ContentBtn13").style.visibility = "hidden";
                     document.getElementById("ContentBtn14").style.visibility = "hidden";
+                    document.getElementById("ContentBtn15").style.visibility = "hidden";
                 }
                 if (ButtonNumber == 13){
                     document.getElementById("ContentBtn0").style.visibility = "visible";
@@ -440,6 +457,7 @@
                     document.getElementById("ContentBtn12").style.visibility = "visible";
                     document.getElementById("ContentBtn13").style.visibility = "hidden";
                     document.getElementById("ContentBtn14").style.visibility = "hidden";
+                    document.getElementById("ContentBtn15").style.visibility = "hidden";
                 }
                 if (ButtonNumber == 14){
                     document.getElementById("ContentBtn0").style.visibility = "visible";
@@ -457,6 +475,7 @@
                     document.getElementById("ContentBtn12").style.visibility = "visible";
                     document.getElementById("ContentBtn13").style.visibility = "visible";
                     document.getElementById("ContentBtn14").style.visibility = "hidden";
+                    document.getElementById("ContentBtn15").style.visibility = "hidden";
                 }
                 if (ButtonNumber == 15){
                     document.getElementById("ContentBtn0").style.visibility = "visible";
@@ -474,6 +493,25 @@
                     document.getElementById("ContentBtn12").style.visibility = "visible";
                     document.getElementById("ContentBtn13").style.visibility = "visible";
                     document.getElementById("ContentBtn14").style.visibility = "visible";
+                    document.getElementById("ContentBtn15").style.visibility = "hidden";
+                }
+                if (ButtonNumber == 16){
+                    document.getElementById("ContentBtn0").style.visibility = "visible";
+                    document.getElementById("ContentBtn1").style.visibility = "visible";
+                    document.getElementById("ContentBtn2").style.visibility = "visible";
+                    document.getElementById("ContentBtn3").style.visibility = "visible";
+                    document.getElementById("ContentBtn4").style.visibility = "visible";
+                    document.getElementById("ContentBtn5").style.visibility = "visible";
+                    document.getElementById("ContentBtn6").style.visibility = "visible";
+                    document.getElementById("ContentBtn7").style.visibility = "visible";
+                    document.getElementById("ContentBtn8").style.visibility = "visible";
+                    document.getElementById("ContentBtn9").style.visibility = "visible";
+                    document.getElementById("ContentBtn10").style.visibility = "visible";
+                    document.getElementById("ContentBtn11").style.visibility = "visible";
+                    document.getElementById("ContentBtn12").style.visibility = "visible";
+                    document.getElementById("ContentBtn13").style.visibility = "visible";
+                    document.getElementById("ContentBtn14").style.visibility = "visible";
+                    document.getElementById("ContentBtn15").style.visibility = "visible";
                 }
         }
 
@@ -495,6 +533,7 @@
             document.getElementById("ContentBtn12").innerHTML = window[AptVar+MenuVar+Name][12];
             document.getElementById("ContentBtn13").innerHTML = window[AptVar+MenuVar+Name][13];
             document.getElementById("ContentBtn14").innerHTML = window[AptVar+MenuVar+Name][14];
+            document.getElementById("ContentBtn15").innerHTML = window[AptVar+MenuVar+Name][15];
 
             document.getElementById("ContentBtn0").href = window[AptVar+MenuVar+Link][0];
             document.getElementById("ContentBtn1").href = window[AptVar+MenuVar+Link][1];
@@ -511,6 +550,8 @@
             document.getElementById("ContentBtn12").href = window[AptVar+MenuVar+Link][12];
             document.getElementById("ContentBtn13").href = window[AptVar+MenuVar+Link][13];
             document.getElementById("ContentBtn14").href = window[AptVar+MenuVar+Link][14];
+            document.getElementById("ContentBtn15").href = window[AptVar+MenuVar+Link][15];
+
         }
 
    </script>
