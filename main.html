@@ -4,29 +4,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="Sidenav.css" media="screen" />
     </head>
-    <body onload="setButton();">
+    <body onload="doTheMagic();">
         <div class="sidenav">
-            <a href="#" id="Home" onclick="SetVar(this.id)">Home</a>
-            <a href="#" id="Gnd" onclick="SetVar(this.id)">GND</a>
-            <a href="#" id="Sid" onclick="SetVar(this.id)">SID</a>
-            <a href="#" id="Star" onclick="SetVar(this.id)">STAR</a>
-            <a href="#" id="Iac" onclick="SetVar(this.id)">IAC</a>
+            <a href="#" id="Home" onclick="setVariable(this.id)">Home</a>
+            <a href="#" id="Gnd" onclick="setVariable(this.id)">GND</a>
+            <a href="#" id="Sid" onclick="setVariable(this.id)">SID</a>
+            <a href="#" id="Star" onclick="setVariable(this.id)">STAR</a>
+            <a href="#" id="Iac" onclick="setVariable(this.id)">IAC</a>
             <div class="dropdown">
                 <button id="AptBtn" class="dropbtn">APT: </button>
                 <div class="dropdown-content">
-                <a href="#" id="EDDB" onclick="SetVar(this.id)">EDDB</a>
-                <a href="#" id="EDDF" onclick="SetVar(this.id)">EDDF</a>
-                <a href="#" id="EDDH" onclick="SetVar(this.id)">EDDH</a>
-                <a href="#" id="EDDL" onclick="SetVar(this.id)">EDDL</a>
-                <a href="#" id="EDDM" onclick="SetVar(this.id)">EDDM</a>
-                <a href="#" id="EDDS" onclick="SetVar(this.id)">EDDS</a>
+                <a href="#" id="EDDB" onclick="setVariable(this.id)">EDDB</a>
+                <a href="#" id="EDDF" onclick="setVariable(this.id)">EDDF</a>
+                <a href="#" id="EDDH" onclick="setVariable(this.id)">EDDH</a>
+                <a href="#" id="EDDL" onclick="setVariable(this.id)">EDDL</a>
+                <a href="#" id="EDDM" onclick="setVariable(this.id)">EDDM</a>
+                <a href="#" id="EDDN" onclick="setVariable(this.id)">EDDN</a>
+                <a href="#" id="EDDS" onclick="setVariable(this.id)">EDDS</a>
 
                 </div>
               </div>
-              <input type="password" id="pass">
-              <p onclick="setButton();" id="LockLable">Locked</p>
+              
         </div>
         <div class="main">
+            <p align="right" onclick="Login();" id="LoginLable">Login</p>
             <h1 id="heading">Home</h1>
             <p id="debug"></p>
             <a href="#" class="ContentBtn" id="ContentBtn0" target="_blank">ContentBtn0</a>
@@ -51,18 +52,23 @@
 
    <script>
        var ButtonNumber;
-       var StorageBetween;
+       var Counter;
 
-       var ButtonNumber = 11;
-       var Counter = 0;
+       var WebsiteUnlocked = false;
 
+       var ConstButtonNumber = 16;
        var AptVar = "EDDx";
        var MenuVar = "Gnd";
 
+       //Names for Windows and Concatinations
        var Name = "Name";
        var Link = "Link";
+       var ContBtnName = "ContentBtn";
 
-       var Password = " ";
+       //Variable for Password
+       var LocalUsername;
+       var LocalPassword = "0";
+
 
        var EDDxGndName = [""];
        var EDDxGndLink = [""];
@@ -72,6 +78,7 @@
        var EDDxStarLink = [""];
        var EDDxIacName = [""];
        var EDDxIacLink = [""];
+
 
        var EDDBGndName = ["Ground", "Apron"];
        var EDDBGndLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=3E0290E0846AF46137C31B987C488E56&title=AD%202%20EDDB%202-9", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=7E6567C349D0ACCA4FCDB9F18598C4C1&title=AD%202%20EDDB%202-7"]; 
@@ -120,6 +127,15 @@
        var EDDMIacName = ["ILS 08L", "ILS 08R", "ILS 26L", "ILS 26R"];
        var EDDMIacLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=873763B4FD688C3DCFB9801BEA147BB5&title=AD%202%20EDDM%204-2-1", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=601B01BCE99100B7E47F1569DE9C2A72&title=AD%202%20EDDM%204-2-2", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=964F1FA23096BB11B809E0D2FF945917&title=AD%202%20EDDM%204-2-3", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=954C756552E949E4C3E2149006356DDC&title=AD%202%20EDDM%204-2-4"];
 
+       var EDDNGndName = ["Ground", "Apron"];
+       var EDDNGndLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=534bd48ab5a4624c93f010b30b9d34fe&title=AD%202%20EDDN%202-5", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=986961fdb5d4a2f1b050031ff4f9a184&title=AD%202%20EDDN%202-7"];
+       var EDDNSidName = ["Rwy 10", "Rwy 28"];
+       var EDDNSidLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=C0BD5F875E9A4D52678C9EFB0D51CB2B&title=AD%202%20EDDN%205-7-3", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=F6E60E140DACB65E9108EAC57F1DF832&title=AD%202%20EDDN%205-7-5"];
+       var EDDNStarName = ["STAR", "Rnav Rwy 10 Dodas, Pivir, Letku, Dosis", "Rnav Rwy 10 Bisbu, Subag", "Rnav Rwy 28 Dodas, Pivir, Letku, Dosis", "Rnav Rwy 28 Nepeg, ERL, Subag, Unkul"];
+       var EDDNStarLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=3C876FB7DEB4322DCF18F286661A6CF1&title=AD%202%20EDDN%203-1-2", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=6345ba252255ffac176d91ae7578ed95&title=AD%202%20EDDN%203-1-3", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=2d3ed71702e856943482b28500b41f52&title=AD%202%20EDDN%203-1-5", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=3ff906f4146c4b59e4d5dd2a5eabe2b5&title=AD%202%20EDDN%203-1-4", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=c19ab40fd65ae28ed708638a3d536ec4&title=AD%202%20EDDN%203-1-6"];
+       var EDDNIacName = ["ILS 10", "ILS 28"];
+       var EDDNIacLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=5F30CBA6FFFF578C746BA3A879D56270&title=AD%202%20EDDN%20%204-2-3", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=A6CBACD3CC3F65C31A0282FD54A3C142&title=AD%202%20EDDN%204-2-1"];
+
        var EDDSGndName = ["Ground", "Apron"];
        var EDDSGndLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=7954BF36059936BD92F33735DC702705&title=AD%202%20EDDS%202-5", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=20C90CCD19B785AC7CAA4FB292CCA54F&title=AD%202%20EDDS%202-7"];
        var EDDSSidName = ["Rwy 07", "Rwy 25"];
@@ -130,430 +146,96 @@
        var EDDSIacLink = ["https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=04377C98D0625C2C45912C9FD7EA6447&title=AD%202%20EDDS%204-2-2", "https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=28DF04F844FFAD2D1AF79B6A16C2F668&title=AD%202%20EDDS%204-2-1"];
 
 
-        function SetVar(Btn) {
-
-            if (Btn == "Home"){
-                MenuVar = Btn;
+        function setVariable(Btn) {
+            //Set Airport Button            
+            if ((Btn === Btn.toUpperCase()) == true) {
+                AptVar = Btn;
             }
-            if (Btn == "Gnd"){
-                MenuVar = Btn;
-            }
-            if (Btn == "Sid"){
-                MenuVar = Btn;
-            }
-            if (Btn == "Star"){
-                MenuVar = Btn;
-            }
-            if (Btn == "Iac"){
+            else {
                 MenuVar = Btn;
             }
 
-            if (Btn == "EDDB"){
-                AptVar = Btn;
-            }
-            if (Btn == "EDDF"){
-                AptVar = Btn;
-            }
-            if (Btn == "EDDH"){
-                AptVar = Btn;
-            }
-            if (Btn == "EDDL"){
-                AptVar = Btn;
-            }
-            if (Btn == "EDDM"){
-                AptVar = Btn;
-            }
-            if (Btn == "EDDS"){
-                AptVar = Btn;
-            }
+            doTheMagic()
+        }
 
+
+        function doTheMagic() {
+            
+            //Set Heading and Selected Airport Lables
             document.getElementById("heading").innerHTML = MenuVar;
             document.getElementById("AptBtn").innerHTML = "APT: " + AptVar;
 
-
-         
-            setButton()
-        }
-        function setButton() {
-
-            StorageBetween = window[AptVar+MenuVar+Name];
-            ButtonNumber = Object.keys(StorageBetween).length;
-            if (document.getElementById("pass").value != "eddfeddm"){
-
-                document.getElementById("LockLable").style.color = "red";
-                document.getElementById("LockLable").innerHTML = "Locked";
-                
-                document.getElementById("ContentBtn0").style.visibility = "hidden";
-                document.getElementById("ContentBtn1").style.visibility = "hidden";
-                document.getElementById("ContentBtn2").style.visibility = "hidden";
-                document.getElementById("ContentBtn3").style.visibility = "hidden";
-                document.getElementById("ContentBtn4").style.visibility = "hidden";
-                document.getElementById("ContentBtn5").style.visibility = "hidden";
-                document.getElementById("ContentBtn6").style.visibility = "hidden";
-                document.getElementById("ContentBtn7").style.visibility = "hidden";
-                document.getElementById("ContentBtn8").style.visibility = "hidden";
-                document.getElementById("ContentBtn9").style.visibility = "hidden";
-                document.getElementById("ContentBtn10").style.visibility = "hidden";
-                document.getElementById("ContentBtn11").style.visibility = "hidden";
-                document.getElementById("ContentBtn12").style.visibility = "hidden";
-                document.getElementById("ContentBtn13").style.visibility = "hidden";
-                document.getElementById("ContentBtn14").style.visibility = "hidden";
-                document.getElementById("ContentBtn15").style.visibility = "hidden";
-            
+            //Sets number of Buttons, that should be visible
+            if (MenuVar != "Home"){
+                ButtonNumber = Object.keys(window[AptVar+MenuVar+Name]).length;
             }
             else {
-                document.getElementById("LockLable").style.color = "green";
-                document.getElementById("LockLable").innerHTML = "Unlocked";
-            
-                if (ButtonNumber == 0){
-                document.getElementById("ContentBtn0").style.visibility = "hidden";
-                document.getElementById("ContentBtn1").style.visibility = "hidden";
-                document.getElementById("ContentBtn2").style.visibility = "hidden";
-                document.getElementById("ContentBtn3").style.visibility = "hidden";
-                document.getElementById("ContentBtn4").style.visibility = "hidden";
-                document.getElementById("ContentBtn5").style.visibility = "hidden";
-                document.getElementById("ContentBtn6").style.visibility = "hidden";
-                document.getElementById("ContentBtn7").style.visibility = "hidden";
-                document.getElementById("ContentBtn8").style.visibility = "hidden";
-                document.getElementById("ContentBtn9").style.visibility = "hidden";
-                document.getElementById("ContentBtn10").style.visibility = "hidden";
-                document.getElementById("ContentBtn11").style.visibility = "hidden";
-                document.getElementById("ContentBtn12").style.visibility = "hidden";
-                document.getElementById("ContentBtn13").style.visibility = "hidden";
-                document.getElementById("ContentBtn14").style.visibility = "hidden";
-                document.getElementById("ContentBtn15").style.visibility = "hidden";
-
+                ButtonNumber = 0;
             }
+
+            // Set if Password is Locked or Unlocked
+            if (WebsiteUnlocked == false){
+
+                // Set Locklabel to Locked
+                document.getElementById("LoginLable").style.color = "red";
+                document.getElementById("LoginLable").innerHTML = "Locked"; 
+
+                // Hides Buttons, when Password is Wrong or not Entered
+                counter = 0;
+                while (counter < ConstButtonNumber) {
+                document.getElementById(ContBtnName.concat(counter)).style.visibility = "hidden";
+                counter = counter + 1;
+                }
+            }
+            else {
+
+                // Set Locklabel to Unlocked
+                document.getElementById("LoginLable").style.color = "green";
+                document.getElementById("LoginLable").innerHTML = "Unlocked";
             
-                if (ButtonNumber == 1){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "hidden";
-                    document.getElementById("ContentBtn2").style.visibility = "hidden";
-                    document.getElementById("ContentBtn3").style.visibility = "hidden";
-                    document.getElementById("ContentBtn4").style.visibility = "hidden";
-                    document.getElementById("ContentBtn5").style.visibility = "hidden";
-                    document.getElementById("ContentBtn6").style.visibility = "hidden";
-                    document.getElementById("ContentBtn7").style.visibility = "hidden";
-                    document.getElementById("ContentBtn8").style.visibility = "hidden";
-                    document.getElementById("ContentBtn9").style.visibility = "hidden";
-                    document.getElementById("ContentBtn10").style.visibility = "hidden";
-                    document.getElementById("ContentBtn11").style.visibility = "hidden";
-                    document.getElementById("ContentBtn12").style.visibility = "hidden";
-                    document.getElementById("ContentBtn13").style.visibility = "hidden";
-                    document.getElementById("ContentBtn14").style.visibility = "hidden";
-                    document.getElementById("ContentBtn15").style.visibility = "hidden";
-                }
-                if (ButtonNumber == 2){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "visible";
-                    document.getElementById("ContentBtn2").style.visibility = "hidden";
-                    document.getElementById("ContentBtn3").style.visibility = "hidden";
-                    document.getElementById("ContentBtn4").style.visibility = "hidden";
-                    document.getElementById("ContentBtn5").style.visibility = "hidden";
-                    document.getElementById("ContentBtn6").style.visibility = "hidden";
-                    document.getElementById("ContentBtn7").style.visibility = "hidden";
-                    document.getElementById("ContentBtn8").style.visibility = "hidden";
-                    document.getElementById("ContentBtn9").style.visibility = "hidden";
-                    document.getElementById("ContentBtn10").style.visibility = "hidden";
-                    document.getElementById("ContentBtn11").style.visibility = "hidden";
-                    document.getElementById("ContentBtn12").style.visibility = "hidden";
-                    document.getElementById("ContentBtn13").style.visibility = "hidden";
-                    document.getElementById("ContentBtn14").style.visibility = "hidden";
-                    document.getElementById("ContentBtn15").style.visibility = "hidden";
-                }
-                if (ButtonNumber == 3){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "visible";
-                    document.getElementById("ContentBtn2").style.visibility = "visible";
-                    document.getElementById("ContentBtn3").style.visibility = "hidden";
-                    document.getElementById("ContentBtn4").style.visibility = "hidden";
-                    document.getElementById("ContentBtn5").style.visibility = "hidden";
-                    document.getElementById("ContentBtn6").style.visibility = "hidden";
-                    document.getElementById("ContentBtn7").style.visibility = "hidden";
-                    document.getElementById("ContentBtn8").style.visibility = "hidden";
-                    document.getElementById("ContentBtn9").style.visibility = "hidden";
-                    document.getElementById("ContentBtn10").style.visibility = "hidden";
-                    document.getElementById("ContentBtn11").style.visibility = "hidden";
-                    document.getElementById("ContentBtn12").style.visibility = "hidden";
-                    document.getElementById("ContentBtn13").style.visibility = "hidden";
-                    document.getElementById("ContentBtn14").style.visibility = "hidden";
-                    document.getElementById("ContentBtn15").style.visibility = "hidden";
-                }
-                if (ButtonNumber == 4){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "visible";
-                    document.getElementById("ContentBtn2").style.visibility = "visible";
-                    document.getElementById("ContentBtn3").style.visibility = "visible";
-                    document.getElementById("ContentBtn4").style.visibility = "hidden";
-                    document.getElementById("ContentBtn5").style.visibility = "hidden";
-                    document.getElementById("ContentBtn6").style.visibility = "hidden";
-                    document.getElementById("ContentBtn7").style.visibility = "hidden";
-                    document.getElementById("ContentBtn8").style.visibility = "hidden";
-                    document.getElementById("ContentBtn9").style.visibility = "hidden";
-                    document.getElementById("ContentBtn10").style.visibility = "hidden";
-                    document.getElementById("ContentBtn11").style.visibility = "hidden";
-                    document.getElementById("ContentBtn12").style.visibility = "hidden";
-                    document.getElementById("ContentBtn13").style.visibility = "hidden";
-                    document.getElementById("ContentBtn14").style.visibility = "hidden";
-                    document.getElementById("ContentBtn15").style.visibility = "hidden";
-                }
-                if (ButtonNumber == 5){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "visible";
-                    document.getElementById("ContentBtn2").style.visibility = "visible";
-                    document.getElementById("ContentBtn3").style.visibility = "visible";
-                    document.getElementById("ContentBtn4").style.visibility = "visible";
-                    document.getElementById("ContentBtn5").style.visibility = "hidden";
-                    document.getElementById("ContentBtn6").style.visibility = "hidden";
-                    document.getElementById("ContentBtn7").style.visibility = "hidden";
-                    document.getElementById("ContentBtn8").style.visibility = "hidden";
-                    document.getElementById("ContentBtn9").style.visibility = "hidden";
-                    document.getElementById("ContentBtn10").style.visibility = "hidden";
-                    document.getElementById("ContentBtn11").style.visibility = "hidden";
-                    document.getElementById("ContentBtn12").style.visibility = "hidden";
-                    document.getElementById("ContentBtn13").style.visibility = "hidden";
-                    document.getElementById("ContentBtn14").style.visibility = "hidden";
-                    document.getElementById("ContentBtn15").style.visibility = "hidden";
-                }
-                if (ButtonNumber == 6){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "visible";
-                    document.getElementById("ContentBtn2").style.visibility = "visible";
-                    document.getElementById("ContentBtn3").style.visibility = "visible";
-                    document.getElementById("ContentBtn4").style.visibility = "visible";
-                    document.getElementById("ContentBtn5").style.visibility = "visible";
-                    document.getElementById("ContentBtn6").style.visibility = "hidden";
-                    document.getElementById("ContentBtn7").style.visibility = "hidden";
-                    document.getElementById("ContentBtn8").style.visibility = "hidden";
-                    document.getElementById("ContentBtn9").style.visibility = "hidden";
-                    document.getElementById("ContentBtn10").style.visibility = "hidden";
-                    document.getElementById("ContentBtn11").style.visibility = "hidden";
-                    document.getElementById("ContentBtn12").style.visibility = "hidden";
-                    document.getElementById("ContentBtn13").style.visibility = "hidden";
-                    document.getElementById("ContentBtn14").style.visibility = "hidden";
-                    document.getElementById("ContentBtn15").style.visibility = "hidden";
-                }
-                if (ButtonNumber == 7){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "visible";
-                    document.getElementById("ContentBtn2").style.visibility = "visible";
-                    document.getElementById("ContentBtn3").style.visibility = "visible";
-                    document.getElementById("ContentBtn4").style.visibility = "visible";
-                    document.getElementById("ContentBtn5").style.visibility = "visible";
-                    document.getElementById("ContentBtn6").style.visibility = "visible";
-                    document.getElementById("ContentBtn7").style.visibility = "hidden";
-                    document.getElementById("ContentBtn8").style.visibility = "hidden";
-                    document.getElementById("ContentBtn9").style.visibility = "hidden";
-                    document.getElementById("ContentBtn10").style.visibility = "hidden";
-                    document.getElementById("ContentBtn11").style.visibility = "hidden";
-                    document.getElementById("ContentBtn12").style.visibility = "hidden";
-                    document.getElementById("ContentBtn13").style.visibility = "hidden";
-                    document.getElementById("ContentBtn14").style.visibility = "hidden";
-                    document.getElementById("ContentBtn15").style.visibility = "hidden";
-                }
-                if (ButtonNumber == 8){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "visible";
-                    document.getElementById("ContentBtn2").style.visibility = "visible";
-                    document.getElementById("ContentBtn3").style.visibility = "visible";
-                    document.getElementById("ContentBtn4").style.visibility = "visible";
-                    document.getElementById("ContentBtn5").style.visibility = "visible";
-                    document.getElementById("ContentBtn6").style.visibility = "visible";
-                    document.getElementById("ContentBtn7").style.visibility = "visible";
-                    document.getElementById("ContentBtn8").style.visibility = "hidden";
-                    document.getElementById("ContentBtn9").style.visibility = "hidden";
-                    document.getElementById("ContentBtn10").style.visibility = "hidden";
-                    document.getElementById("ContentBtn11").style.visibility = "hidden";
-                    document.getElementById("ContentBtn12").style.visibility = "hidden";
-                    document.getElementById("ContentBtn13").style.visibility = "hidden";
-                    document.getElementById("ContentBtn14").style.visibility = "hidden";
-                    document.getElementById("ContentBtn15").style.visibility = "hidden";
-                }
-                if (ButtonNumber == 9){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "visible";
-                    document.getElementById("ContentBtn2").style.visibility = "visible";
-                    document.getElementById("ContentBtn3").style.visibility = "visible";
-                    document.getElementById("ContentBtn4").style.visibility = "visible";
-                    document.getElementById("ContentBtn5").style.visibility = "visible";
-                    document.getElementById("ContentBtn6").style.visibility = "visible";
-                    document.getElementById("ContentBtn7").style.visibility = "visible";
-                    document.getElementById("ContentBtn8").style.visibility = "visible";
-                    document.getElementById("ContentBtn9").style.visibility = "hidden";
-                    document.getElementById("ContentBtn10").style.visibility = "hidden";
-                    document.getElementById("ContentBtn11").style.visibility = "hidden";
-                    document.getElementById("ContentBtn12").style.visibility = "hidden";
-                    document.getElementById("ContentBtn13").style.visibility = "hidden";
-                    document.getElementById("ContentBtn14").style.visibility = "hidden";
-                    document.getElementById("ContentBtn15").style.visibility = "hidden";
-                }
-                if (ButtonNumber == 10){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "visible";
-                    document.getElementById("ContentBtn2").style.visibility = "visible";
-                    document.getElementById("ContentBtn3").style.visibility = "visible";
-                    document.getElementById("ContentBtn4").style.visibility = "visible";
-                    document.getElementById("ContentBtn5").style.visibility = "visible";
-                    document.getElementById("ContentBtn6").style.visibility = "visible";
-                    document.getElementById("ContentBtn7").style.visibility = "visible";
-                    document.getElementById("ContentBtn8").style.visibility = "visible";
-                    document.getElementById("ContentBtn9").style.visibility = "visible";
-                    document.getElementById("ContentBtn10").style.visibility = "hidden";
-                    document.getElementById("ContentBtn11").style.visibility = "hidden";
-                    document.getElementById("ContentBtn12").style.visibility = "hidden";
-                    document.getElementById("ContentBtn13").style.visibility = "hidden";
-                    document.getElementById("ContentBtn14").style.visibility = "hidden";
-                    document.getElementById("ContentBtn15").style.visibility = "hidden";
-                }
-                if (ButtonNumber == 11){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "visible";
-                    document.getElementById("ContentBtn2").style.visibility = "visible";
-                    document.getElementById("ContentBtn3").style.visibility = "visible";
-                    document.getElementById("ContentBtn4").style.visibility = "visible";
-                    document.getElementById("ContentBtn5").style.visibility = "visible";
-                    document.getElementById("ContentBtn6").style.visibility = "visible";
-                    document.getElementById("ContentBtn7").style.visibility = "visible";
-                    document.getElementById("ContentBtn8").style.visibility = "visible";
-                    document.getElementById("ContentBtn9").style.visibility = "visible";
-                    document.getElementById("ContentBtn10").style.visibility = "visible";
-                    document.getElementById("ContentBtn11").style.visibility = "hidden";
-                    document.getElementById("ContentBtn12").style.visibility = "hidden";
-                    document.getElementById("ContentBtn13").style.visibility = "hidden";
-                    document.getElementById("ContentBtn14").style.visibility = "hidden";
-                    document.getElementById("ContentBtn15").style.visibility = "hidden";
-                }
-                if (ButtonNumber == 12){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "visible";
-                    document.getElementById("ContentBtn2").style.visibility = "visible";
-                    document.getElementById("ContentBtn3").style.visibility = "visible";
-                    document.getElementById("ContentBtn4").style.visibility = "visible";
-                    document.getElementById("ContentBtn5").style.visibility = "visible";
-                    document.getElementById("ContentBtn6").style.visibility = "visible";
-                    document.getElementById("ContentBtn7").style.visibility = "visible";
-                    document.getElementById("ContentBtn8").style.visibility = "visible";
-                    document.getElementById("ContentBtn9").style.visibility = "visible";
-                    document.getElementById("ContentBtn10").style.visibility = "visible";
-                    document.getElementById("ContentBtn11").style.visibility = "visible";
-                    document.getElementById("ContentBtn12").style.visibility = "hidden";
-                    document.getElementById("ContentBtn13").style.visibility = "hidden";
-                    document.getElementById("ContentBtn14").style.visibility = "hidden";
-                    document.getElementById("ContentBtn15").style.visibility = "hidden";
-                }
-                if (ButtonNumber == 13){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "visible";
-                    document.getElementById("ContentBtn2").style.visibility = "visible";
-                    document.getElementById("ContentBtn3").style.visibility = "visible";
-                    document.getElementById("ContentBtn4").style.visibility = "visible";
-                    document.getElementById("ContentBtn5").style.visibility = "visible";
-                    document.getElementById("ContentBtn6").style.visibility = "visible";
-                    document.getElementById("ContentBtn7").style.visibility = "visible";
-                    document.getElementById("ContentBtn8").style.visibility = "visible";
-                    document.getElementById("ContentBtn9").style.visibility = "visible";
-                    document.getElementById("ContentBtn10").style.visibility = "visible";
-                    document.getElementById("ContentBtn11").style.visibility = "visible";
-                    document.getElementById("ContentBtn12").style.visibility = "visible";
-                    document.getElementById("ContentBtn13").style.visibility = "hidden";
-                    document.getElementById("ContentBtn14").style.visibility = "hidden";
-                    document.getElementById("ContentBtn15").style.visibility = "hidden";
-                }
-                if (ButtonNumber == 14){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "visible";
-                    document.getElementById("ContentBtn2").style.visibility = "visible";
-                    document.getElementById("ContentBtn3").style.visibility = "visible";
-                    document.getElementById("ContentBtn4").style.visibility = "visible";
-                    document.getElementById("ContentBtn5").style.visibility = "visible";
-                    document.getElementById("ContentBtn6").style.visibility = "visible";
-                    document.getElementById("ContentBtn7").style.visibility = "visible";
-                    document.getElementById("ContentBtn8").style.visibility = "visible";
-                    document.getElementById("ContentBtn9").style.visibility = "visible";
-                    document.getElementById("ContentBtn10").style.visibility = "visible";
-                    document.getElementById("ContentBtn11").style.visibility = "visible";
-                    document.getElementById("ContentBtn12").style.visibility = "visible";
-                    document.getElementById("ContentBtn13").style.visibility = "visible";
-                    document.getElementById("ContentBtn14").style.visibility = "hidden";
-                    document.getElementById("ContentBtn15").style.visibility = "hidden";
-                }
-                if (ButtonNumber == 15){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "visible";
-                    document.getElementById("ContentBtn2").style.visibility = "visible";
-                    document.getElementById("ContentBtn3").style.visibility = "visible";
-                    document.getElementById("ContentBtn4").style.visibility = "visible";
-                    document.getElementById("ContentBtn5").style.visibility = "visible";
-                    document.getElementById("ContentBtn6").style.visibility = "visible";
-                    document.getElementById("ContentBtn7").style.visibility = "visible";
-                    document.getElementById("ContentBtn8").style.visibility = "visible";
-                    document.getElementById("ContentBtn9").style.visibility = "visible";
-                    document.getElementById("ContentBtn10").style.visibility = "visible";
-                    document.getElementById("ContentBtn11").style.visibility = "visible";
-                    document.getElementById("ContentBtn12").style.visibility = "visible";
-                    document.getElementById("ContentBtn13").style.visibility = "visible";
-                    document.getElementById("ContentBtn14").style.visibility = "visible";
-                    document.getElementById("ContentBtn15").style.visibility = "hidden";
-                }
-                if (ButtonNumber == 16){
-                    document.getElementById("ContentBtn0").style.visibility = "visible";
-                    document.getElementById("ContentBtn1").style.visibility = "visible";
-                    document.getElementById("ContentBtn2").style.visibility = "visible";
-                    document.getElementById("ContentBtn3").style.visibility = "visible";
-                    document.getElementById("ContentBtn4").style.visibility = "visible";
-                    document.getElementById("ContentBtn5").style.visibility = "visible";
-                    document.getElementById("ContentBtn6").style.visibility = "visible";
-                    document.getElementById("ContentBtn7").style.visibility = "visible";
-                    document.getElementById("ContentBtn8").style.visibility = "visible";
-                    document.getElementById("ContentBtn9").style.visibility = "visible";
-                    document.getElementById("ContentBtn10").style.visibility = "visible";
-                    document.getElementById("ContentBtn11").style.visibility = "visible";
-                    document.getElementById("ContentBtn12").style.visibility = "visible";
-                    document.getElementById("ContentBtn13").style.visibility = "visible";
-                    document.getElementById("ContentBtn14").style.visibility = "visible";
-                    document.getElementById("ContentBtn15").style.visibility = "visible";
+                // Set Button Visibility
+                counter = 0;
+                while (counter < ConstButtonNumber) {
+                    if (counter < ButtonNumber) {
+                        document.getElementById(ContBtnName.concat(counter)).style.visibility = "visible";
+                    }
+                    else {
+                        document.getElementById(ContBtnName.concat(counter)).style.visibility = "hidden";
+                    }
+                counter = counter + 1;
                 }
         }
 
 
-
-
-            document.getElementById("ContentBtn0").innerHTML = window[AptVar+MenuVar+Name][0];
-            document.getElementById("ContentBtn1").innerHTML = window[AptVar+MenuVar+Name][1];
-            document.getElementById("ContentBtn2").innerHTML = window[AptVar+MenuVar+Name][2];
-            document.getElementById("ContentBtn3").innerHTML = window[AptVar+MenuVar+Name][3];
-            document.getElementById("ContentBtn4").innerHTML = window[AptVar+MenuVar+Name][4];
-            document.getElementById("ContentBtn5").innerHTML = window[AptVar+MenuVar+Name][5];
-            document.getElementById("ContentBtn6").innerHTML = window[AptVar+MenuVar+Name][6];
-            document.getElementById("ContentBtn7").innerHTML = window[AptVar+MenuVar+Name][7];
-            document.getElementById("ContentBtn8").innerHTML = window[AptVar+MenuVar+Name][8];
-            document.getElementById("ContentBtn9").innerHTML = window[AptVar+MenuVar+Name][9];
-            document.getElementById("ContentBtn10").innerHTML = window[AptVar+MenuVar+Name][10];
-            document.getElementById("ContentBtn11").innerHTML = window[AptVar+MenuVar+Name][11];
-            document.getElementById("ContentBtn12").innerHTML = window[AptVar+MenuVar+Name][12];
-            document.getElementById("ContentBtn13").innerHTML = window[AptVar+MenuVar+Name][13];
-            document.getElementById("ContentBtn14").innerHTML = window[AptVar+MenuVar+Name][14];
-            document.getElementById("ContentBtn15").innerHTML = window[AptVar+MenuVar+Name][15];
-
-            document.getElementById("ContentBtn0").href = window[AptVar+MenuVar+Link][0];
-            document.getElementById("ContentBtn1").href = window[AptVar+MenuVar+Link][1];
-            document.getElementById("ContentBtn2").href = window[AptVar+MenuVar+Link][2];
-            document.getElementById("ContentBtn3").href = window[AptVar+MenuVar+Link][3];
-            document.getElementById("ContentBtn4").href = window[AptVar+MenuVar+Link][4];
-            document.getElementById("ContentBtn5").href = window[AptVar+MenuVar+Link][5];
-            document.getElementById("ContentBtn6").href = window[AptVar+MenuVar+Link][6];
-            document.getElementById("ContentBtn7").href = window[AptVar+MenuVar+Link][7];
-            document.getElementById("ContentBtn8").href = window[AptVar+MenuVar+Link][8];
-            document.getElementById("ContentBtn9").href = window[AptVar+MenuVar+Link][9];
-            document.getElementById("ContentBtn10").href = window[AptVar+MenuVar+Link][10];
-            document.getElementById("ContentBtn11").href = window[AptVar+MenuVar+Link][11];
-            document.getElementById("ContentBtn12").href = window[AptVar+MenuVar+Link][12];
-            document.getElementById("ContentBtn13").href = window[AptVar+MenuVar+Link][13];
-            document.getElementById("ContentBtn14").href = window[AptVar+MenuVar+Link][14];
-            document.getElementById("ContentBtn15").href = window[AptVar+MenuVar+Link][15];
-
+        // Sets the Buttons Labels
+        counter = 0;
+        while (counter < ConstButtonNumber) {
+            document.getElementById(ContBtnName.concat(counter)).innerHTML = window[AptVar+MenuVar+Name][counter];
+            counter = counter + 1;
         }
 
+        // Sets the Buttons Link
+        counter = 0;
+        while (counter < ConstButtonNumber) {
+            document.getElementById(ContBtnName.concat(counter)).href = window[AptVar+MenuVar+Link][counter];
+            counter = counter + 1;
+        }
+        }
+
+
+        function Login() {
+            //Username = prompt("Please enter Username:");
+            LocalPassword = prompt("Please enter Password:");
+
+            if (LocalPassword != "eddfeddm"){
+                WebsiteUnlocked = false;
+                alert("False Password")
+            }
+            else {
+                WebsiteUnlocked = true;
+            }
+            doTheMagic();
+        }
    </script>
 </body>
 </html> 
