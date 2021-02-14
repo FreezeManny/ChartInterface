@@ -1,11 +1,11 @@
-Gnd;Ground;,;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=7954BF36059936BD92F33735DC702705&title=AD%202%20EDDS%202-5;.
-Gnd;Apron;,;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=20C90CCD19B785AC7CAA4FB292CCA54F&title=AD%202%20EDDS%202-7;.
-Sid;Rwy07;,;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=E573E0744439219F961AB09D8930A01A&title=AD%202%20EDDS%205-7-7;.
-Sid;Rwy25;,;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=67E5FE4B7A334511F8D5F762DCAC77FA&title=AD%202%20EDDS%205-7-3;.
-Star;Star Rwy 07/25;,;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=89976781E0F24B5940CB570E7F486936&title=AD%202%20EDDS%203-1-2;.
-Star;Rnav Rwy 07;,;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=33469952090B3F77F504A193B6DEE7BC&title=AD%202%20EDDS%203-1-3;.
-Star;Rnav Rwy 07 CDO;,;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=D8A61CE756E56ECF0C716160904E017A&title=AD%202%20EDDS%203-1-5;.
-Star;Rnav Rwy 25;,;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=1F998A1C3BEB157CFDCD4D85EEF3023C&title=AD%202%20EDDS%203-1-4;.
-Star;Rnav Rwy 25 CDO;,;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=9E754F9223FDFDCD018CF64DEADC8D9E&title=AD%202%20EDDS%203-1-6;.
-Iac;ILS 07;,;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=04377C98D0625C2C45912C9FD7EA6447&title=AD%202%20EDDS%204-2-2;.
-Iac;ILS 25;,;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=28DF04F844FFAD2D1AF79B6A16C2F668&title=AD%202%20EDDS%204-2-1;.
+Gnd;Ground;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=7954BF36059936BD92F33735DC702705&title=AD%202%20EDDS%202-5
+Gnd;Apron;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=20C90CCD19B785AC7CAA4FB292CCA54F&title=AD%202%20EDDS%202-7
+Sid;Rwy07;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=E573E0744439219F961AB09D8930A01A&title=AD%202%20EDDS%205-7-7
+Sid;Rwy25;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=67E5FE4B7A334511F8D5F762DCAC77FA&title=AD%202%20EDDS%205-7-3
+Star;Star Rwy 07/25;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=89976781E0F24B5940CB570E7F486936&title=AD%202%20EDDS%203-1-2
+Star;Rnav Rwy 07;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=33469952090B3F77F504A193B6DEE7BC&title=AD%202%20EDDS%203-1-3
+Star;Rnav Rwy 07 CDO;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=D8A61CE756E56ECF0C716160904E017A&title=AD%202%20EDDS%203-1-5
+Star;Rnav Rwy 25;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=1F998A1C3BEB157CFDCD4D85EEF3023C&title=AD%202%20EDDS%203-1-4
+Star;Rnav Rwy 25 CDO;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=9E754F9223FDFDCD018CF64DEADC8D9E&title=AD%202%20EDDS%203-1-6
+Iac;ILS 07;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=04377C98D0625C2C45912C9FD7EA6447&title=AD%202%20EDDS%204-2-2
+Iac;ILS 25;https://aip.dfs.de/basicIFR/scripts/getPage.php?part=AD&id=28DF04F844FFAD2D1AF79B6A16C2F668&title=AD%202%20EDDS%204-2-1
