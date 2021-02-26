@@ -24,7 +24,10 @@ button {
   background-color: rgb(0, 0, 0);
 }
 
-
+.warning {
+  font-size: 35px;
+  color: red;
+}
 
 
 /* CSS for Sidenav */
